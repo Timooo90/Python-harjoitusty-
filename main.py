@@ -7,23 +7,18 @@ class Application():
         self.__logged_as_admin = False
         self.__admin_password = "123"
         self.__login_success = False
-        self.__commands = "019"
+        self.__customer_commands = "019"
+        self.__admin_commands = "0"
         self.__cinema_halls_filepath = "salit.json"
         self.__cinema_halls = []
         self.__load_cinema_halls(self.__cinema_halls_filepath)
 
 
     def main(self):
-
         self.__print_intro()
 
         while self.__execution_on:
-            if self.__logged_as_admin:
-                break
-                #breaking tilalle kaivataan hallintatyökaluja
-
-            else:
-                self.__execute_command(self.__get_command())
+            self.__execute_command(self.__get_command())
 
 
     def __print_intro(self):
@@ -47,7 +42,7 @@ class Application():
     
     def __admin_login_passcheck(self):
         while True:
-            attempt = input("Anna salasana: (no se on tietysti \"123\")")
+            attempt = input("Anna salasana: (no se on oletuksena tietysti \"123\")")
 
             if attempt == "":
                 break
@@ -67,23 +62,45 @@ class Application():
         print("2 - Omistaja")
         print("")
     
-    def __print_commands(self):
+    def __print_customer_commands(self):
         print("")
-        print("0 - Lopeta")
+        print("0 - Sulje ohjelma")
         print("1 - Tulosta salit")
         print("9 - Vaihda käyttäjää")
         print("")
 
+    def __print_admin_commands(self):
+        print("")
+        print("0 - Poistu")
+
+    def __exit_admin_mode(self):
+        self.__logged_as_admin = False
+
     def __get_command(self):
-        self.__print_commands()
+        if self.__logged_as_admin:
+            self.__print_admin_commands()
+        else:
+            self.__print_customer_commands()
 
         while True:
             command = input("Valitse komento: ")
 
-            if command in self.__commands:
-                return command
+            if self.__logged_as_admin == True:
+                if command in self.__admin_commands:
+                    return command
+
+            else:
+                if command in self.__customer_commands:
+                    return command
     
     def __execute_command(self, command):
+        if self.__logged_as_admin == True:
+            self.__execute_admin_command(command)
+        else:
+            self.__execute_customer_command(command)
+
+    
+    def __execute_customer_command(self, command):
         if command == "0":
             self.__execution_on = False
             return
@@ -93,7 +110,10 @@ class Application():
         
         elif command == "9":
             self.__select_user()
-        
+
+    def __execute_admin_command(self, command):
+        if command == "0":
+            self.__exit_admin_mode()
 
     def __load_cinema_halls(self, path):
         try:
