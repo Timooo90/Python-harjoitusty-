@@ -4,25 +4,74 @@ import json
 class Application():
     def __init__(self):
         self.__execution_on = True
-        self.__commands = "01"
+        self.__logged_as_admin = False
+        self.__admin_password = "123"
+        self.__login_success = False
+        self.__commands = "019"
         self.__cinema_halls_filepath = "salit.json"
         self.__cinema_halls = []
         self.__load_cinema_halls(self.__cinema_halls_filepath)
 
 
     def main(self):
+
         self.__print_intro()
 
         while self.__execution_on:
-            self.__execute_command(self.__get_command())
+            if self.__logged_as_admin:
+                break
+                #breaking tilalle kaivataan hallintatyökaluja
+
+            else:
+                self.__execute_command(self.__get_command())
+
 
     def __print_intro(self):
         print("Tervetuloa Leffanaattoriin!")
+
+        self.__select_user()
+
+    def __select_user(self):
+        self.__print_user_types()
+        
+        self.__logged_as_admin = False
+        self.__login_success = False
+        while not self.__login_success:
+            choice = input("Valitse käyttäjä: ")
+            if choice in "12":
+                if choice == "1":
+                    self.__logged_as_admin = False
+                    self.__login_success = True
+                elif choice == "2":
+                    self.__admin_login_passcheck()
+    
+    def __admin_login_passcheck(self):
+        while True:
+            attempt = input("Anna salasana: (no se on tietysti \"123\")")
+
+            if attempt == "":
+                break
+
+            if attempt == self.__admin_password:
+                self.__logged_as_admin = True
+                self.__login_success = True
+                print("Sisäänkirjaus onnistui!")
+                break
+            else:
+                print("Väärä salasana. Anna tyhjä salasana, jos haluat peruuttaa kirjautumisen.")
+
+
+    def __print_user_types(self):
+        print("Käyttäjäluokat: ")
+        print("1 - Asiakas")
+        print("2 - Omistaja")
+        print("")
     
     def __print_commands(self):
         print("")
         print("0 - Lopeta")
         print("1 - Tulosta salit")
+        print("9 - Vaihda käyttäjää")
         print("")
 
     def __get_command(self):
@@ -38,8 +87,12 @@ class Application():
         if command == "0":
             self.__execution_on = False
             return
+
         elif command == "1":
             self.print_cinema_halls()
+        
+        elif command == "9":
+            self.__select_user()
         
 
     def __load_cinema_halls(self, path):
@@ -113,6 +166,15 @@ class CinemaHall():
         return name, seats, shows
 
 
+class Movie():
+    def __init__(self, name: str, director: str, runtime: int, required_age: int):
+        self.__name = name
+        self.__director = director
+        self.__runtime = runtime
+        self.__required_age = required_age
+
+    def __str__(self):
+        return(f"{self.__name}, kesto {self.__runtime} minuuttia.")
 
 
 
