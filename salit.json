@@ -1,1 +1,12 @@
-[{"Nimi": "sali1", "Paikkoja": 23, "N\u00e4yt\u00f6kset": []}, {"Nimi": "sali2", "Paikkoja": 54, "N\u00e4yt\u00f6kset": []}]
+[
+ {
+  "Nimi": "Sali1",
+  "Paikkoja": 30,
+  "N\u00e4yt\u00f6kset": []
+ },
+ {
+  "Nimi": "Sali2",
+  "Paikkoja": 402,
+  "N\u00e4yt\u00f6kset": []
+ }
+]
