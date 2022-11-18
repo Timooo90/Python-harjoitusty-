@@ -4,11 +4,14 @@ class CinemaHall():
         self.__seats = seats
         self.__shows = shows
     
+
     def __str__(self):
         return(f"{self.__name}, paikkoja {self.__seats}")
     
+
     def form_dictionary_from_self(self):
         return {"Nimi": self.__name, "Paikkoja": self.__seats, "Näytökset": self.__shows}
+    
     
     def create_new_hall_from_input(self):
         print("Luodaan uusi sali.")

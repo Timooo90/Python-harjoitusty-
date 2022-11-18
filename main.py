@@ -11,32 +11,31 @@ class Application():
         self.__execution_on = True
         self.__logged_as_admin = False
         self.__login_success = False
-
         self.__settings = Settings()
 
-        self.__cinema_halls_filepath = "salit.json"
         self.__cinema_halls = []
-        self.__load_cinema_halls(self.__cinema_halls_filepath)
+        self.__load_cinema_halls(self.__settings.get_cinema_halls_filepath())
 
 
     def main(self):
         self.__settings.print_intro()
-        self.__select_user()
+
+        self.select_user()
 
         while self.__execution_on:
-            self.__execute_command(self.__get_command())
+            self.__execute_commands()
 
 
-    def __select_user(self):
+    def select_user(self):
         self.__settings.print_user_types()
         
-        self.__exit_admin_mode()
+        self.exit_admin_mode()
         self.__login_success = False
         while not self.__login_success:
             choice = input("Valitse käyttäjä: ")
             if choice in ["1", "2"]:
                 if choice == "1":
-                    self.__exit_admin_mode()
+                    self.exit_admin_mode()
                     self.__login_success = True
                 elif choice == "2":
                     self.__admin_login_passcheck()
@@ -58,50 +57,38 @@ class Application():
                 print("Väärä salasana. Anna tyhjä salasana, jos haluat peruuttaa kirjautumisen.")
 
 
-    def __exit_admin_mode(self):
+    def exit_admin_mode(self):
         self.__logged_as_admin = False
+    
+    def stop_execution(self):
+        self.__execution_on = False
 
 
-    def __get_command(self):
+    def __execute_commands(self):
         if self.__logged_as_admin:
-            self.__settings.print_admin_commands()
+            self.execute_admin_commands()
         else:
-            self.__settings.print_customer_commands()
+            self.execute_customer_commands()
 
-        while True:
+
+    def execute_admin_commands(self):
+        while self.__execution_on and self.__logged_as_admin:
+            self.__settings.print_admin_commands()
             command = input("Valitse komento: ")
 
-            if self.__logged_as_admin == True:
-                if command in self.__settings.get_admin_commands():
-                    return command
-
-            else:
-                if command in self.__settings.get_customer_commands():
-                    return command
-    
-
-    def __execute_command(self, command):
-        if self.__logged_as_admin == True:
-            self.__execute_admin_command(command)
-        else:
-            self.__execute_customer_command(command)
-
-    
-    def __execute_customer_command(self, command):
-        if command == "0":
-            self.__execution_on = False
-            return
-
-        elif command == "1":
-            self.print_cinema_halls()
-        
-        elif command == "9":
-            self.__select_user()
+            if command in self.__settings.get_admin_commands():
+                func = self.__settings.get_admin_commands()[command] + "()"
+                eval(func)
 
 
-    def __execute_admin_command(self, command):
-        if command == "0":
-            self.__exit_admin_mode()
+    def execute_customer_commands(self):
+        while self.__execution_on and not self.__logged_as_admin:
+            self.__settings.print_customer_commands()
+            command = input("Valitse komento: ")
+
+            if command in self.__settings.get_customer_commands():
+                func = self.__settings.get_customer_commands()[command] + "()"
+                eval(func)
 
 
     def __load_cinema_halls(self, path):
@@ -121,7 +108,7 @@ class Application():
 
 
     def __save_file(self):
-        with open(self.__cinema_halls_filepath, "w") as file:
+        with open(self.__settings.get_cinema_halls_filepath(), "w") as file:
             json_compatible_dict_list = []
             for hall in self.__cinema_halls:
                 json_compatible_dict_list.append(hall.form_dictionary_from_self())
@@ -143,8 +130,6 @@ class Application():
         else:
             for hall in self.__cinema_halls:
                 print(hall)
-
-
 
 
 
