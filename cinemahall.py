@@ -12,7 +12,7 @@ class CinemaHall():
     def form_dictionary_from_self(self):
         return {"Nimi": self.__name, "Paikkoja": self.__seats, "Näytökset": self.__shows}
     
-    
+
     def create_new_hall_from_input(self):
         print("Luodaan uusi sali.")
         name = input("Anna nimi: ")
@@ -31,3 +31,12 @@ class CinemaHall():
         shows = []
 
         return name, seats, shows
+    
+    def change_hall_name(self, new_name):
+        self.__name = new_name
+    
+    def change_hall_seats(self, new_number):
+        self.__seats = new_number
+
+    def get_shows(self):
+        return self.__shows
