@@ -15,7 +15,14 @@ class Settings:
                                     "4": "self.remove_cinema_hall"}
 
         self.__cinema_halls_filepath = "salit.json"
-    
+
+        self.__default_movies = [("Skyrminator 2: Rahkapäivä", "O. Ohjaaja", 120, 18),
+                                ("Indianan Joonas ja Viimeinen Nistiretki", "A. Naurismäki", 95, 0),
+                                ("Tätien Sota Episodi V: Irmelin Pastaisku", "S. Spielbergule", 142, 12),
+                                ("Fifty Shades of EI!", "P. Räsänen", 15, 99),
+                                ("Spider-Manse: Hämyri Tampereella", "J. Jokunen", 78, 12),
+                                ("Kuudes Maisti", "E. N. Keksienää", 111, 15),
+                                ("007: Juominen Ei Koskaan Kuole", "Joku Randomi", 357, 21)]
 
     def print_intro(self):
         print("Tervetuloa Leffanaattoriin!")
@@ -61,3 +68,6 @@ class Settings:
 
     def get_cinema_halls_filepath(self):
         return self.__cinema_halls_filepath
+
+    def get_default_movies(self):
+        return self.__default_movies

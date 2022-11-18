@@ -1,7 +1,7 @@
 import os
 import json
 
-from movie import Movie
+from films import Films
 from cinemahall import CinemaHall
 from settings import Settings
 
@@ -14,8 +14,9 @@ class Application():
         self.__settings = Settings()
 
         self.__cinema_halls = []
-        self.__movies = []
+        self.__films = Films()
         self.__load_cinema_halls(self.__settings.get_cinema_halls_filepath())
+        self.print_film_selection()
 
 
     def main(self):
@@ -63,7 +64,6 @@ class Application():
     def stop_execution(self):
         self.__execution_on = False
 
-
     def get_command(self):
         return input("Anna komento: ")
 
@@ -72,6 +72,16 @@ class Application():
             self.execute_admin_commands()
         else:
             self.execute_customer_commands()
+
+
+    def execute_customer_commands(self):
+        while self.__execution_on and not self.__logged_as_admin:
+            self.__settings.print_customer_commands()
+            command = self.get_command()
+
+            if command in self.__settings.get_customer_commands():
+                func = self.__settings.get_customer_commands()[command] + "()"
+                eval(func)
 
 
     def execute_admin_commands(self):
@@ -97,24 +107,16 @@ class Application():
                 eval(func)
 
 
-    def execute_customer_commands(self):
-        while self.__execution_on and not self.__logged_as_admin:
-            self.__settings.print_customer_commands()
-            command = self.get_command()
-
-            if command in self.__settings.get_customer_commands():
-                func = self.__settings.get_customer_commands()[command] + "()"
-                eval(func)
-
-
     def __load_cinema_halls(self, path):
         try:
             data = self.__load_json_data_from_file(path)
                 
             for hall in data:
-                self.add_cinema_hall(False, hall["Nimi"], hall["Paikkoja"], hall["Näytökset"])
+                self.add_cinema_hall(False, hall["Nimi"], hall["Paikkoja"], hall["Näytökset"], loading_from_file = True)
         except:
             print(f"Virhe lukiessa tiedostoa \"{path}\". Virheellinen formaatti tai tyhjä tiedosto.")
+        
+        self.save_file()
 
 
     def __load_json_data_from_file(self, path):
@@ -132,12 +134,13 @@ class Application():
             json.dump(json_compatible_dict_list, file, indent=1)
 
     
-    def add_cinema_hall(self, manual: bool = True, name: str = "Ei nimeä", seats: int = 0, shows: list = []):
+    def add_cinema_hall(self, manual: bool = True, name: str = "Ei nimeä", seats: int = 0, shows: list = [], loading_from_file = False):
         if manual:
             name, seats, shows = CinemaHall.create_new_hall_from_input(self)
 
         self.__cinema_halls.append(CinemaHall(name, seats, shows))
-        self.save_file() # Tämä tulee siirtää johonkin järkevämpään kohtaan ettei tallenneta joka lisäyksen välissä turhaan.
+        if not loading_from_file:
+            self.save_file()
 
     def edit_cinema_hall(self):
         self.print_cinema_halls()
@@ -223,12 +226,18 @@ class Application():
                 hall_index += 1
 
 
+    def print_film_selection(self):
+        film_list = self.__films.print_films()
+
+
 
 def main():
     app = Application()
     app.main()
 
     app.save_file()
+
+
 
 
 
