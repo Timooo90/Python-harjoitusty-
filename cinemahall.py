@@ -17,15 +17,11 @@ class CinemaHall():
 
     def create_new_hall_from_input(self):
         print("Luodaan uusi sali.")
-        name = input("Anna nimi: ")
+        print("Salin nimi: ", end="")
+        name = input_validation.ask_user_to_input_a_name()
 
-        while True:
-            seats = input("Anna uusi istuinmäärä: ")
-
-            if input_validation.is_integer_and_at_least_zero(seats):
-                break
-            else:
-                print("Anna positiivinen kokonaisluku.")
+        print("Paikkojen määrä: ")
+        seats = input_validation.ask_user_to_input_number_over_zero()
                     
         shows = []
 

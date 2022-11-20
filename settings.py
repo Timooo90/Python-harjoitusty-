@@ -2,22 +2,37 @@ class Settings:
     def __init__(self):
         self.__admin_password = "123"
 
-        self.__customer_commands = {"0": "self.stop_execution",
+        self.__customer_commands = {
+                                    "0": "self.stop_execution",
                                     "1": "self.print_cinema_halls",
-                                    "9": "self.select_user"}
+                                    "9": "self.select_user"
+                                    }
 
-        self.__admin_commands = {"0": "self.exit_admin_mode",
-                                "1": "self.cinema_halls_editing_menu"}
-        
-        self.__edit_halls_commands = {"1": "self.print_cinema_halls",
+        self.__admin_commands = {
+                                "0": "self.exit_admin_mode",
+                                "1": "self.cinema_halls_editing_menu",
+                                "2": "self.films_editing_menu",
+                                "3": "self.shows_editing_menu"
+                                }
+
+        self.__edit_halls_commands = {
+                                    "1": "self.print_cinema_halls",
                                     "2": "self.add_cinema_hall",
                                     "3": "self.edit_cinema_hall",
-                                    "4": "self.remove_cinema_hall"}
+                                    "4": "self.remove_cinema_hall"
+                                    }
+        self.__edit_films_commands = {
+                                    "1": "self.print_films",
+                                    "2": "self.add.film",
+                                    "3": "self.edit_film",
+                                    "4": "self.remove_film"
+                                    }
 
         self.__cinema_halls_filepath = "salit.json"
+        self.__films_filepath = "films.json"
 
         self.__default_movies = [("Skyrminator 2: Rahkapäivä", "O. Ohjaaja", 120, 18),
-                                ("Indianan Joonas ja Viimeinen Nistiretki", "A. Naurismäki", 95, 0),
+                                ("Indianan Joonas ja Viimeinen Nistiretki", "A. Naurismäki", 420, 0),
                                 ("Tätien Sota Episodi V: Irmelin Pastaisku", "S. Spielbergule", 142, 12),
                                 ("Fifty Shades of EI!", "P. Räsänen", 15, 99),
                                 ("Spider-Manse: Hämyri Tampereella", "J. Jokunen", 78, 12),
@@ -44,14 +59,38 @@ class Settings:
         print("")
         print("0 - Poistu")
         print("1 - Hallinnoi saleja")
+        print("2 - Hallinnoi elokuvia")
+        print("3 - Hallinnoi näytöksiä")
 
-    def print_edit_cinema_hall_commands(self):
+    def print_edit_cinema_halls_commands(self):
         print("")
         print("0 - Takaisin")
         print("1 - Tulosta salit")
         print("2 - Luo uusi")
         print("3 - Muokkaa salia")
         print("4 - Poista sali")
+
+    def print_edit_single_hall_commands(self):
+        print("")
+        print("0 - Peruuta")
+        print("1 - Muuta nimeä")
+        print("2 - Muuta istuinpaikkojen määrää")
+
+    def print_edit_films_commands(self):
+        print("")
+        print("0 - Takaisin")
+        print("1 - Tulosta elokuvavalikoima")
+        print("2 - Lisää uusi elokuva")
+        print("3 - Muokkaa elokuvaa")
+        print("4 - Poista elokuva")
+
+    def print_edit_shows_commands(self):
+        print("")
+        print("0 - Takaisin")
+        print("1 - Tulosta näytökset")
+        print("2 - Lisää näytös")
+        print("3 - Muokkaa näytöstä")
+        print("4 - Poista näytös")
 
     def get_admin_password(self):
         return self.__admin_password
@@ -64,6 +103,9 @@ class Settings:
 
     def get_edit_halls_commands(self):
         return self.__edit_halls_commands
+
+    def get_edit_films_commands(self):
+        return self.__edit_films_commands
 
     def get_cinema_halls_filepath(self):
         return self.__cinema_halls_filepath

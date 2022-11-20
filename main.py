@@ -95,7 +95,7 @@ class Application():
 
     def cinema_halls_editing_menu(self):
         while True:
-            self.__settings.print_edit_cinema_hall_commands()
+            self.__settings.print_edit_cinema_halls_commands()
             command = self.get_command()
 
             if command == "0":
@@ -106,7 +106,7 @@ class Application():
                 eval(func)
 
 
-    def __load_cinema_halls(self, path):
+    def __load_cinema_halls(self, path: str):
         try:
             data = self.__load_json_data_from_file(path)
                 
@@ -118,7 +118,7 @@ class Application():
         self.save_file()
 
 
-    def __load_json_data_from_file(self, path):
+    def __load_json_data_from_file(self, path: str):
         with open(path, "r") as file:
             data = json.load(file)
             return data
@@ -144,13 +144,9 @@ class Application():
     def edit_cinema_hall(self):
         self.print_cinema_halls()
         hall_index = self.__choose_cinema_hall_number()
-
-        print("0 - Peruuta")
-        print("1 - Muuta nimeä")
-        print("2 - Muuta istuinpaikkojen määrää")
+        self.__settings.print_edit_single_hall_commands()
 
         command = self.get_command()
-
 
         if command == "0":
             return
@@ -218,7 +214,23 @@ class Application():
 
 
     def print_film_selection(self):
-        film_list = self.__films.print_films()
+        self.__films.print_films()
+
+
+
+
+    def films_editing_menu(self):
+        while True:
+            self.__settings.print_edit_films_commands()
+            command = self.get_command()
+
+            if command == "0":
+                break
+
+            if command in self.__settings.get_edit_halls_commands():
+                func = self.__settings.get_edit_halls_commands()[command] + "()"
+                eval(func)
+
 
 
 
@@ -227,9 +239,6 @@ def main():
     app.main()
 
     app.save_file()
-
-
-
 
 
 main()

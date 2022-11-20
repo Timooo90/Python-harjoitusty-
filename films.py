@@ -1,4 +1,5 @@
 from settings import Settings
+import input_validation as input_validation
 
 settings = Settings()
 
@@ -16,6 +17,21 @@ class Films():
     def print_films(self):
         for movie in self.__films:
             print(movie)
+    
+    def add_film(self, manual: bool = False, name:str = "Ei nimeä", director: str = "Ei ohjaajaa", runtime: int = 0, required_age: int = 0):
+        if manual:
+            print("Elokuvan nimi: ", end="")
+            name = input_validation.ask_user_to_input_a_name()
+            print("Ohjaaja: ", end="")
+            director = input_validation.ask_user_to_input_a_name()
+            print("Kesto: ")
+            runtime = input_validation.ask_user_to_input_number_over_zero()
+            print("Ikäraja: ")
+            runtime = input_validation.ask_user_to_input_number_over_zero()
+        
+        self.__films.append(Films.Film(name, director, runtime, required_age))
+
+
 
     class Film():
         def __init__(self, name: str, director: str, runtime: int, required_age: int):
@@ -30,3 +46,4 @@ class Films():
 
         def get_age_limit(self):
             return self.__required_age
+        
