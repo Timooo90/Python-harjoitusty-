@@ -39,7 +39,7 @@ def ask_user_to_input_a_name() -> str:
     
     return name
 
-def ask_user_to_input_number_over_zero() -> int:
+def ask_user_to_input_number_zero_or_over() -> int:
     while True:
         number = input()
 
@@ -50,6 +50,9 @@ def ask_user_to_input_number_over_zero() -> int:
 
         if is_integer_and_at_least_zero(number):
             return number
+
+def ask_command_from_user() -> str:
+    return input("Anna komento: ")
 
 if __name__ == "__main__":
     while True:

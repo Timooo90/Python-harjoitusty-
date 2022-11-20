@@ -1,6 +1,7 @@
 import os
 import json
 
+import input_validation as input_validation
 from films import Films
 from cinemahall import CinemaHall
 from settings import Settings
@@ -64,7 +65,7 @@ class Application():
         self.__execution_on = False
 
     def get_command(self):
-        return input("Anna komento: ")
+        return input_validation.ask_command_from_user()
 
     def __execute_commands(self):
         if self.__logged_as_admin:
@@ -218,19 +219,8 @@ class Application():
 
 
 
-
     def films_editing_menu(self):
-        while True:
-            self.__settings.print_edit_films_commands()
-            command = self.get_command()
-
-            if command == "0":
-                break
-
-            if command in self.__settings.get_edit_halls_commands():
-                func = self.__settings.get_edit_halls_commands()[command] + "()"
-                eval(func)
-
+        self.__films.edit_films()
 
 
 

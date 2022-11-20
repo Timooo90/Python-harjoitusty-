@@ -3,30 +3,38 @@ class Settings:
         self.__admin_password = "123"
 
         self.__customer_commands = {
-                                    "0": "self.stop_execution",
-                                    "1": "self.print_cinema_halls",
-                                    "9": "self.select_user"
-                                    }
+                                "0": "self.stop_execution",
+                                "1": "self.print_cinema_halls",
+                                "9": "self.select_user"
+        }
 
         self.__admin_commands = {
                                 "0": "self.exit_admin_mode",
                                 "1": "self.cinema_halls_editing_menu",
                                 "2": "self.films_editing_menu",
                                 "3": "self.shows_editing_menu"
-                                }
+        }
 
         self.__edit_halls_commands = {
-                                    "1": "self.print_cinema_halls",
-                                    "2": "self.add_cinema_hall",
-                                    "3": "self.edit_cinema_hall",
-                                    "4": "self.remove_cinema_hall"
-                                    }
+                                "1": "self.print_cinema_halls",
+                                "2": "self.add_cinema_hall",
+                                "3": "self.edit_cinema_hall",
+                                "4": "self.remove_cinema_hall"
+        }
         self.__edit_films_commands = {
-                                    "1": "self.print_films",
-                                    "2": "self.add.film",
-                                    "3": "self.edit_film",
-                                    "4": "self.remove_film"
-                                    }
+                                "1": "self.print_films",
+                                "2": "self.add_film",
+                                "3": "self.edit_film",
+                                "4": "self.remove_film"
+        }
+        
+        self.__edit_single_film_commands = {
+                                "1": "self.change_name",
+                                "2": "self.change_director",
+                                "3": "self.change_runtime",
+                                "4": "self.change_required_age"
+            
+        }
 
         self.__cinema_halls_filepath = "salit.json"
         self.__films_filepath = "films.json"
@@ -83,6 +91,14 @@ class Settings:
         print("2 - Lisää uusi elokuva")
         print("3 - Muokkaa elokuvaa")
         print("4 - Poista elokuva")
+    
+    def print_edit_single_film_commands(self):
+        print("")
+        print("0 - Takaisin")
+        print("1 - Vaihda elokuvan nimi")
+        print("2 - Vaihda ohjaajan nimi")
+        print("3 - Muuta kestoa")
+        print("4 - Muuta ikärajaa")
 
     def print_edit_shows_commands(self):
         print("")
@@ -106,6 +122,9 @@ class Settings:
 
     def get_edit_films_commands(self):
         return self.__edit_films_commands
+    
+    def get_edit_single_film_commands(self):
+        return self.__edit_single_film_commands
 
     def get_cinema_halls_filepath(self):
         return self.__cinema_halls_filepath

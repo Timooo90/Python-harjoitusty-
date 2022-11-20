@@ -21,7 +21,7 @@ class CinemaHall():
         name = input_validation.ask_user_to_input_a_name()
 
         print("Paikkojen määrä: ")
-        seats = input_validation.ask_user_to_input_number_over_zero()
+        seats = input_validation.ask_user_to_input_number_zero_or_over()
                     
         shows = []
 
