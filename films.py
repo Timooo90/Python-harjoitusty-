@@ -26,7 +26,7 @@ class Films():
 
 
         def __str__(self):
-            return(f"{self.__name}, kesto {self.__runtime} minuuttia.")
+            return(f"{self.__name}, kesto {self.__runtime} minuuttia. Ohjannut {self.__director}.")
 
         def get_age_limit(self):
             return self.__required_age

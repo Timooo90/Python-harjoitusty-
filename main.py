@@ -16,7 +16,6 @@ class Application():
         self.__cinema_halls = []
         self.__films = Films()
         self.__load_cinema_halls(self.__settings.get_cinema_halls_filepath())
-        self.print_film_selection()
 
 
     def main(self):
@@ -96,7 +95,7 @@ class Application():
 
     def cinema_halls_editing_menu(self):
         while True:
-            self.__settings.print_edit_cinema_commands()
+            self.__settings.print_edit_cinema_hall_commands()
             command = self.get_command()
 
             if command == "0":
@@ -156,9 +155,9 @@ class Application():
         if command == "0":
             return
         elif command == "1":
-            self.__change_cinema_hall_name(hall_index)
+            self.__cinema_halls[hall_index].change_cinema_hall_name()
         elif command == "2":
-            self.__change_cinema_hall_seats(hall_index)
+            self.__cinema_halls[hall_index].change_cinema_hall_seats()
 
 
     def remove_cinema_hall(self):
@@ -207,14 +206,6 @@ class Application():
         
         return index_to_edit
         
-
-    def __change_cinema_hall_name(self, hall_index):
-        new_name = input("Anna salin uusi nimi: ")
-        self.__cinema_halls[hall_index].change_hall_name(new_name)
-
-    def __change_cinema_hall_seats(self, hall_index):
-        new_number = int(input("Anna paikkojen määrä: "))
-        self.__cinema_halls[hall_index].change_hall_seats(new_number)
 
     def print_cinema_halls(self):
         if len(self.__cinema_halls) < 1:

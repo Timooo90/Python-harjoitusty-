@@ -1,3 +1,5 @@
+import input_validation as input_validation
+
 class CinemaHall():
     def __init__(self, name: str = "no name", seats: int = 0, shows: list = []):
         self.__name = name
@@ -18,24 +20,35 @@ class CinemaHall():
         name = input("Anna nimi: ")
 
         while True:
-            try:
-                seats = int(input("Anna istumapaikkojen määrä: "))
-            except:
-                print("Virheellinen arvo, anna positiivinen kokonaisluku.")
-            
-            if seats > 0:
+            seats = input("Anna uusi istuinmäärä: ")
+
+            if input_validation.is_integer_and_at_least_zero(seats):
                 break
             else:
-                print("Virheellinen arvo, anna positiivinen kokonaisluku.")
-        
+                print("Anna positiivinen kokonaisluku.")
+                    
         shows = []
 
         return name, seats, shows
-    
-    def change_hall_name(self, new_name):
+      
+    def change_cinema_hall_name(self):
+        new_name = input("Anna salin uusi nimi: ")
         self.__name = new_name
     
-    def change_hall_seats(self, new_number):
+    def change_cinema_hall_seats(self):
+        while True:
+            new_number = int(input("Anna paikkojen määrä: "))
+
+            if input_validation.is_integer_and_at_least_zero(new_number):
+                break
+            else:
+                print("Anna positiivinen kokonaisluku.")
+            
+            if new_number < 0:
+                continue
+            else:
+                break
+
         self.__seats = new_number
 
     def get_shows(self):

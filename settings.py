@@ -27,7 +27,6 @@ class Settings:
     def print_intro(self):
         print("Tervetuloa Leffanaattoriin!")
 
-
     def print_user_types(self):
         print("Käyttäjäluokat: ")
         print("1 - Asiakas")
@@ -46,7 +45,7 @@ class Settings:
         print("0 - Poistu")
         print("1 - Hallinnoi saleja")
 
-    def print_edit_cinema_commands(self):
+    def print_edit_cinema_hall_commands(self):
         print("")
         print("0 - Takaisin")
         print("1 - Tulosta salit")
