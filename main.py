@@ -217,10 +217,38 @@ class Application():
     def print_film_selection(self):
         self.__films.print_films()
 
-
-
     def films_editing_menu(self):
         self.__films.edit_films()
+
+    def shows_editing_menu(self):
+        while True:
+            self.__settings.print_edit_shows_commands()
+            command = self.get_command()
+
+            if command == "0":
+                return
+
+            if command in self.__settings.get_edit_shows_commands():
+                func = self.__settings.get_edit_shows_commands()[command] + "()"
+                eval(func)
+
+
+    def print_all_shows(self):
+        for hall in self.__cinema_halls:
+            print(f"Sali: {hall.get_name()}")
+            print("Näytökset: ")
+            
+            hall.print_shows()
+
+    def edit_shows_in_a_hall(self):
+        self.print_cinema_halls()
+        hall_index = self.__choose_cinema_hall_number()
+
+        if hall_index < 0:
+            return
+
+        if len(self.__cinema_halls[hall_index].get_shows()) > 0:
+            self.__cinema_halls[hall_index].edit_shows()
 
 
 

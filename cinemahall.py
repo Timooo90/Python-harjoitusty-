@@ -1,4 +1,7 @@
 import input_validation as input_validation
+from settings import Settings
+
+settings = Settings()
 
 class CinemaHall():
     def __init__(self, name: str = "no name", seats: int = 0, shows: list = []):
@@ -47,5 +50,35 @@ class CinemaHall():
 
         self.__seats = new_number
 
+    def get_name(self):
+        return self.__name
+
     def get_shows(self):
         return self.__shows
+    
+    def print_shows(self):
+        if len(self.__shows) < 1:
+                print("Ei näytöksiä")
+        else: 
+            for show in self.__shows:
+                print(show)
+            
+        print("-" * 20)
+
+    def add_show(self):
+        pass
+
+    def remove_show(self):
+        pass
+
+    def edit_shows(self):
+        while True:
+            Settings.print_edit_shows_of_selected_hall_commands(Settings)
+            command = input_validation.ask_command_from_user()
+
+            if command == "0":
+                return
+
+            if command in settings.get_edit_shows_of_selected_hall_commands():
+                func = settings.get_edit_shows_of_selected_hall_commands()[command] + "()"
+                eval(func)

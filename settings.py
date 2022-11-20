@@ -36,6 +36,17 @@ class Settings:
             
         }
 
+        self.__edit_shows_commands = {
+                                "1": "self.print_all_shows",
+                                "2": "self.edit_shows_in_a_hall"
+        }
+
+        self.__edit_shows_of_selected_hall = {
+                                "1": "self.print_shows",
+                                "2": "self.add_show",
+                                "3": "self.remove_show"
+        }
+
         self.__cinema_halls_filepath = "salit.json"
         self.__films_filepath = "films.json"
 
@@ -103,10 +114,16 @@ class Settings:
     def print_edit_shows_commands(self):
         print("")
         print("0 - Takaisin")
-        print("1 - Tulosta näytökset")
+        print("1 - Tulosta kaikki näytökset")
+        print("2 - Hallitse näytöksiä")
+
+    def print_edit_shows_of_selected_hall_commands(self):
+        print("")
+        print("0 - Takaisin")
+        print("1 - Tulosta salin näytökset")
         print("2 - Lisää näytös")
-        print("3 - Muokkaa näytöstä")
-        print("4 - Poista näytös")
+        print("3 - Poista näytös")
+
 
     def get_admin_password(self):
         return self.__admin_password
@@ -125,6 +142,12 @@ class Settings:
     
     def get_edit_single_film_commands(self):
         return self.__edit_single_film_commands
+    
+    def get_edit_shows_commands(self):
+        return self.__edit_shows_commands
+
+    def get_edit_shows_of_selected_hall_commands(self):
+        return self.__edit_shows_of_selected_hall
 
     def get_cinema_halls_filepath(self):
         return self.__cinema_halls_filepath

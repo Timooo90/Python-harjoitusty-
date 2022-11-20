@@ -91,6 +91,9 @@ class Films():
 
         def get_age_limit(self):
             return self.__required_age
+        
+        def get_name(self):
+            return self.__name
 
         def change_name(self):
             name = input_validation.ask_user_to_input_a_name()
