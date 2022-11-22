@@ -149,7 +149,6 @@ class Theater():
     def films_editing_menu(self):
         self.__films.edit_films()
 
-    
 
     #################################################################
     # Shows related functions
@@ -176,7 +175,7 @@ class Theater():
             
             hall.print_shows()
     
-    
+
     def edit_shows_in_a_hall(self):
         self.print_cinema_halls()
         hall_index = self.__choose_cinema_hall_number()
