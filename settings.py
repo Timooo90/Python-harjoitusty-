@@ -3,6 +3,7 @@ import json
 class Settings:
     def __init__(self):
         self.__admin_password = "123"
+        self.__last_acceptable_year = 2200
 
         self.__cinema_halls_filepath = "salit.json"
         self.__films_filepath = "films.json"
@@ -118,6 +119,11 @@ class Settings:
         print("2 - Lisää näytös")
         print("3 - Poista näytös")
 
+    def print_select_date_options(self):
+        print("Valitse päivämäärä: ")
+        print("0 - Tänään")
+        print("1 - Huomenna")
+        print("2 - Aseta päivämäärä")
 
     def get_admin_password(self):
         return self.__admin_password
@@ -156,3 +162,6 @@ class Settings:
         with open(path, "r") as file:
             data = json.load(file)
             return data
+        
+    def get_last_acceptable_year(self):
+        return self.__last_acceptable_year

@@ -141,6 +141,9 @@ class Films():
         def change_required_age(self):
             required_age = input_validation.ask_user_to_input_number_zero_or_over()
             self.__required_age = required_age
+
+        def get_runtime(self):
+            return self.__runtime
         
 
         def edit_film(self):
