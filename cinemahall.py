@@ -14,9 +14,26 @@ class CinemaHall():
         return(f"{self.__name}, paikkoja {self.__seats}")
     
 
-    def form_dictionary_from_self(self):
+    def form_dictionary_from_self(self): # For JSON format saving in a file
         return {"Nimi": self.__name, "Paikkoja": self.__seats, "Näytökset": self.__shows}
     
+
+    #################################################################
+    # Adding, editing and removing related functions for cinema halls
+    #################################################################
+
+    def edit_shows(self):
+        while True:
+            Settings.print_edit_shows_of_selected_hall_commands(Settings)
+            command = input_validation.ask_command_from_user()
+
+            if command == "0":
+                return
+
+            if command in settings.get_edit_shows_of_selected_hall_commands():
+                func = settings.get_edit_shows_of_selected_hall_commands()[command] + "()"
+                eval(func)
+
 
     def create_new_hall_from_input(self):
         print("Luodaan uusi sali.")
@@ -29,11 +46,13 @@ class CinemaHall():
         shows = []
 
         return name, seats, shows
+
       
     def change_cinema_hall_name(self):
         new_name = input("Anna salin uusi nimi: ")
         self.__name = new_name
     
+
     def change_cinema_hall_seats(self):
         while True:
             new_number = int(input("Anna paikkojen määrä: "))
@@ -50,6 +69,18 @@ class CinemaHall():
 
         self.__seats = new_number
 
+    
+    def add_show(self):
+        pass
+
+    def remove_show(self):
+        pass
+
+
+    #################################################################
+    # Miscellaneous
+    #################################################################
+
     def get_name(self):
         return self.__name
 
@@ -64,21 +95,3 @@ class CinemaHall():
                 print(show)
             
         print("-" * 20)
-
-    def add_show(self):
-        pass
-
-    def remove_show(self):
-        pass
-
-    def edit_shows(self):
-        while True:
-            Settings.print_edit_shows_of_selected_hall_commands(Settings)
-            command = input_validation.ask_command_from_user()
-
-            if command == "0":
-                return
-
-            if command in settings.get_edit_shows_of_selected_hall_commands():
-                func = settings.get_edit_shows_of_selected_hall_commands()[command] + "()"
-                eval(func)

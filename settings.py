@@ -4,15 +4,15 @@ class Settings:
 
         self.__customer_commands = {
                                 "0": "self.stop_execution",
-                                "1": "self.print_cinema_halls",
+                                "1": "self.theater.print_cinema_halls",
                                 "9": "self.select_user"
         }
 
         self.__admin_commands = {
                                 "0": "self.exit_admin_mode",
-                                "1": "self.cinema_halls_editing_menu",
-                                "2": "self.films_editing_menu",
-                                "3": "self.shows_editing_menu"
+                                "1": "self.theater.cinema_halls_editing_menu",
+                                "2": "self.theater.films_editing_menu",
+                                "3": "self.theater.shows_editing_menu"
         }
 
         self.__edit_halls_commands = {
