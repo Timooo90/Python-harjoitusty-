@@ -3,7 +3,6 @@ from datetime import datetime
 import input_validation as input_validation
 from settings import Settings
 from films import Films
-from show import Show
 
 settings = Settings()
 
@@ -116,7 +115,10 @@ class CinemaHall():
                 print("Ei näytöksiä")
         else: 
             for show in self.__shows:
-                print(f"#{index}: {show}")
+                show_date = input_validation.string_to_date(show[0])
+                show_film = Films.get_film_name_from_id(Films(), show[1])
+
+                print(f"#{index}: Esitysaika: {show_date}, Elokuva: {show_film}")
                 index += 1
             
         print("-" * 20)

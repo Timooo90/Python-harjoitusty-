@@ -150,10 +150,10 @@ class Theater():
         self.__films.edit_films()
 
 
+        
     #################################################################
     # Shows related functions
     #################################################################
-
 
     def shows_editing_menu(self):
         while True:
@@ -183,5 +183,4 @@ class Theater():
         if hall_index < 0:
             return
 
-        if len(self.__cinema_halls[hall_index].get_shows()) > 0:
-            self.__cinema_halls[hall_index].edit_shows()
+        self.__cinema_halls[hall_index].edit_shows()

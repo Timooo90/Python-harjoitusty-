@@ -9,7 +9,6 @@ class Films():
     def __init__(self):
         self.__films = []
         self.__load_films(Settings.get_films_filepath(Settings()))
-        self.__film_ids = []
 
 
     def __load_films(self, path: str):
@@ -98,6 +97,16 @@ class Films():
             ids.append(film.get_id())
 
         return ids
+    
+
+    def get_film_name_from_id(self, id: int) -> str:
+        index = 0
+        for film in self.__films:
+            if film.get_id() == id:
+                break
+            index += 1
+
+        return self.__films[index].get_name()
 
 
     #################################################################
@@ -198,5 +207,5 @@ class Films():
                     eval(func)
                     break
         
-        def form_dictionary_from_self(self):
+        def form_dictionary_from_self(self): # For JSON
             return {"ID": self.__id, "Nimi": self.__name, "Ohjaaja": self.__director, "Kesto": self.__runtime, "Ikäraja": self.__required_age}

@@ -1,9 +1,4 @@
-import os
-import json
-
 import input_validation as input_validation
-from films import Films
-from cinemahall import CinemaHall
 from settings import Settings
 from theater import Theater
 

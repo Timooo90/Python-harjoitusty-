@@ -1,8 +1,9 @@
-import json
-
 from datetime import datetime
 from datetime import timedelta
 from films import Films
+
+################ THIS WHOLE FILE MAY BE USELESS, HAVE TO FINISH THE SHOW FUNCTIONALITY TO DETERMINE!
+
 
 class Show():
     def __init__(self, start_time: datetime, film: Films.Film):
