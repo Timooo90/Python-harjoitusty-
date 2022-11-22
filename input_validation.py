@@ -1,4 +1,6 @@
 from datetime import date
+from datetime import time
+from datetime import datetime
 from datetime import timedelta
 
 from settings import Settings
@@ -138,6 +140,34 @@ def is_leap_year(year) -> bool:
         return False
 
 
+def ask_time_HH_MM_from_user() -> time:
+    print("Näytöksen alkamisaika")
+    while True:
+        print("Tunnit: ")
+        hours = ask_user_to_input_number_zero_or_over()
+        if hours <= 23:
+            break
+        else:
+            print("Anna arvo 0-23 väliltä.")
+    
+    while True:
+        print("Minuutit: ")
+        minutes = ask_user_to_input_number_zero_or_over()
+        if minutes <= 59:
+            break
+        else:
+            print("Anna arvo 0-59 väliltä.")
+
+    return time(hours, minutes)
+
+
+def date_to_string(date: datetime) -> str:
+    return date.strftime("%Y%m%d, %H%M%S")
+
+def string_to_date(date_string: str) -> datetime:
+    return datetime.strptime(date_string, "%Y%m%d, %H%M%S")
+
+
     #################################################################
     # For testing purposes
     #################################################################
@@ -156,7 +186,9 @@ if __name__ == "__main__":
     
 
     while date_testing:
-        print(ask_date_from_user())
+        #print(ask_date_from_user())
+
+        print(ask_time_HH_MM_from_user())
 
         #year = int(input("Vuosi: "))
         #print(is_leap_year(year))

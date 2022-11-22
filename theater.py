@@ -18,7 +18,7 @@ class Theater():
                 
             for hall in data:
                 self.add_cinema_hall(False, hall["Nimi"], hall["Paikkoja"], hall["Näytökset"], loading_from_file = True)
-        except:
+        except json.JSONDecodeError:
             print(f"Virhe lukiessa tiedostoa \"{path}\". Virheellinen formaatti tai tyhjä tiedosto.")
         
         self.save_file()

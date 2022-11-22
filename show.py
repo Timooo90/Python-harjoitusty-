@@ -1,3 +1,5 @@
+import json
+
 from datetime import datetime
 from datetime import timedelta
 from films import Films
@@ -7,12 +9,10 @@ class Show():
         self.__start_time = start_time
         self.__film = film
         self.__end_time = self.get_end_time()
-
-
     
     def __str__(self):
         return f"{self.__film.get_name()}. Alkaa {self.__start_time}, loppuu {self.__end_time}"
-    
+        
     def get_end_time(self):
         runtime = self.__film.get_runtime()
         end_time = self.__start_time + timedelta(minutes=runtime)
@@ -20,8 +20,7 @@ class Show():
         return end_time
 
 
-
-
+    
 
 
 

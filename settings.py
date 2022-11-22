@@ -3,7 +3,7 @@ import json
 class Settings:
     def __init__(self):
         self.__admin_password = "123"
-        self.__last_acceptable_year = 2200
+        self.__last_acceptable_year = 9999
 
         self.__cinema_halls_filepath = "salit.json"
         self.__films_filepath = "films.json"

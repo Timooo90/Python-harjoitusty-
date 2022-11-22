@@ -1,5 +1,9 @@
+from datetime import datetime
+
 import input_validation as input_validation
 from settings import Settings
+from films import Films
+from show import Show
 
 settings = Settings()
 
@@ -71,10 +75,29 @@ class CinemaHall():
 
     
     def add_show(self):
-        pass
+        start_date = input_validation.ask_date_from_user()
+        start_HH_MM = input_validation.ask_time_HH_MM_from_user()
+
+        date_time_combined = datetime(start_date.year, start_date.month, start_date.day, start_HH_MM.hour, start_HH_MM.minute)
+
+        start_time_string = input_validation.date_to_string(date_time_combined)
+
+        film = Films.select_film_for_show(Films())
+
+        self.__shows.append((start_time_string, film.get_id()))
+
 
     def remove_show(self):
-        pass
+        self.print_shows()
+        print("Valitse poistettavan näytöksen järjestysluku: ")
+
+        while True:
+            index = input_validation.ask_user_to_input_number_zero_or_over()
+
+            if index < len(self.__shows):
+                self.__shows.pop(index)
+                break
+
 
 
     #################################################################
@@ -88,10 +111,19 @@ class CinemaHall():
         return self.__shows
     
     def print_shows(self):
+        index = 0
         if len(self.__shows) < 1:
                 print("Ei näytöksiä")
         else: 
             for show in self.__shows:
-                print(show)
+                print(f"#{index}: {show}")
+                index += 1
             
         print("-" * 20)
+
+
+
+
+if __name__ == "__main__":
+    hall = CinemaHall()
+    print(hall.add_show())

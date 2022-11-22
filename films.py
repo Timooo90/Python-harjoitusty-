@@ -9,6 +9,7 @@ class Films():
     def __init__(self):
         self.__films = []
         self.__load_films(Settings.get_films_filepath(Settings()))
+        self.__film_ids = []
 
 
     def __load_films(self, path: str):
@@ -16,8 +17,8 @@ class Films():
             data = Settings.load_json_data_from_file(Settings(), path)
                 
             for film in data:
-                self.add_film(False, film["Nimi"], film["Ohjaaja"], film["Kesto"], film["Ikäraja"], loading_from_file = True)
-        except:
+                self.add_film(False, film["Nimi"], film["Ohjaaja"], film["Kesto"], film["Ikäraja"], film["ID"], loading_from_file = True)
+        except json.JSONDecodeError:
             print(f"Virhe lukiessa tiedostoa \"{path}\". Virheellinen formaatti tai tyhjä tiedosto.")
         
         self.save_file()
@@ -36,7 +37,7 @@ class Films():
     # Adding, editing and removing related functions for films
     #################################################################
     
-    def add_film(self, manual: bool = True, name:str = "Ei nimeä", director: str = "Ei ohjaajaa", runtime: int = 0, required_age: int = 0, loading_from_file = False):
+    def add_film(self, manual: bool = True, name:str = "Ei nimeä", director: str = "Ei ohjaajaa", runtime: int = 0, required_age: int = 0, id: int = 0, loading_from_file = False):
         if manual:
             print("Elokuvan nimi: ", end="")
             name = input_validation.ask_user_to_input_a_name()
@@ -47,7 +48,7 @@ class Films():
             print("Ikäraja: ")
             runtime = input_validation.ask_user_to_input_number_zero_or_over()
         
-        self.__films.append(Films.Film(name, director, runtime, required_age))
+        self.__films.append(Films.Film(name, director, runtime, required_age, id))
 
         if not loading_from_file:
             self.save_file()
@@ -91,6 +92,13 @@ class Films():
                 self.__films.pop(film_index)
                 break
 
+    def get_all_film_ids(self):
+        ids = []
+        for film in self.__films:
+            ids.append(film.get_id())
+
+        return ids
+
 
     #################################################################
     # Miscellaneous
@@ -108,14 +116,28 @@ class Films():
             print(f"#{index}: {movie}")
             index += 1
 
+    def select_film_for_show(self):
+        self.print_films()
+
+        index = input_validation.ask_user_to_input_number_zero_or_over()
+
+        if self.film_index_exists(index):
+            return self.__films[index]
+
+
+
 
 
     class Film():
-        def __init__(self, name: str, director: str, runtime: int, required_age: int):
+        def __init__(self, name: str, director: str, runtime: int, required_age: int,  id: int = 0):
+            self.__id = id
             self.__name = name
             self.__director = director
             self.__runtime = runtime
             self.__required_age = required_age
+
+            if self.__id == 0:
+                self.__id = self.create_unique_id()
 
         def __str__(self):
             return(f"{self.__name}, kesto {self.__runtime} minuuttia. Ohjannut {self.__director}.")
@@ -125,6 +147,23 @@ class Films():
         
         def get_name(self):
             return self.__name
+
+        def get_id(self):
+            return self.__id
+        
+        def create_unique_id(self):
+            existing_ids = Films.get_all_film_ids(Films())
+
+            if len(existing_ids) < 1:
+                id = 1
+            else:
+                id = existing_ids[-1] + 1
+
+            while id in existing_ids:
+                id += 1
+            
+            return id
+
 
         def change_name(self):
             name = input_validation.ask_user_to_input_a_name()
@@ -160,4 +199,4 @@ class Films():
                     break
         
         def form_dictionary_from_self(self):
-            return {"Nimi": self.__name, "Ohjaaja": self.__director, "Kesto": self.__runtime, "Ikäraja": self.__required_age}
+            return {"ID": self.__id, "Nimi": self.__name, "Ohjaaja": self.__director, "Kesto": self.__runtime, "Ikäraja": self.__required_age}
