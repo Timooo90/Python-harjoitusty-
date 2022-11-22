@@ -64,9 +64,6 @@ class Application():
     def stop_execution(self):
         self.__execution_on = False
 
-    def get_command(self):
-        return input_validation.ask_command_from_user()
-
     def __execute_commands(self):
         if self.__logged_as_admin:
             self.execute_admin_commands()
@@ -77,7 +74,7 @@ class Application():
     def execute_customer_commands(self):
         while self.__execution_on and not self.__logged_as_admin:
             self.__settings.print_customer_commands()
-            command = self.get_command()
+            command = input_validation.ask_command_from_user()
 
             if command in self.__settings.get_customer_commands():
                 func = self.__settings.get_customer_commands()[command] + "()"
@@ -87,7 +84,7 @@ class Application():
     def execute_admin_commands(self):
         while self.__execution_on and self.__logged_as_admin:
             self.__settings.print_admin_commands()
-            command = self.get_command()
+            command = input_validation.ask_command_from_user()
 
             if command in self.__settings.get_admin_commands():
                 func = self.__settings.get_admin_commands()[command] + "()"
@@ -97,7 +94,7 @@ class Application():
     def cinema_halls_editing_menu(self):
         while True:
             self.__settings.print_edit_cinema_halls_commands()
-            command = self.get_command()
+            command = input_validation.ask_command_from_user()
 
             if command == "0":
                 break
@@ -147,7 +144,7 @@ class Application():
         hall_index = self.__choose_cinema_hall_number()
         self.__settings.print_edit_single_hall_commands()
 
-        command = self.get_command()
+        command = input_validation.ask_command_from_user()
 
         if command == "0":
             return
@@ -223,7 +220,7 @@ class Application():
     def shows_editing_menu(self):
         while True:
             self.__settings.print_edit_shows_commands()
-            command = self.get_command()
+            command = input_validation.ask_command_from_user()
 
             if command == "0":
                 return
