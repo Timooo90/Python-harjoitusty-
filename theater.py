@@ -101,7 +101,7 @@ class Theater():
             self.__cinema_halls.pop(hall_index)
 
 
-    def confirm_removal_of_hall_with_shows(self):
+    def confirm_removal_of_hall_with_shows(self) -> bool:
         remove = False
 
         while True:
@@ -116,7 +116,7 @@ class Theater():
         return remove
 
     
-    def __choose_cinema_hall_number(self):
+    def __choose_cinema_hall_number(self) -> int:
         while True:
             try:
                 index_to_edit = int(input("Anna salin järjestysnumero: "))
@@ -189,7 +189,7 @@ class Theater():
 
             date_and_time = show["Aloitusaika"]
             film_name = self.__films.get_film_name_from_id(show["Elokuvan ID"])
-            available_seats = hall.get_amount_of_seats() - show["Varauksia"]
+            available_seats = hall.get_number_of_seats() - show["Varauksia"]
             
             print(f"#{index} | Näytösaika: {date_and_time} | Sali: {hall.get_name()} | Elokuva: {film_name} | Vapaita paikkoja: {available_seats}")
     
@@ -216,24 +216,80 @@ class Theater():
                 func = Settings.get_browse_shows_commands(Settings())[command] + "()"
                 eval(func)
 
+    
+    def seat_reservation(self, indexed_list, index):
+        if index == 0:
+            return
+        else:
+            self.reserve_seats_in_show(indexed_list[index - 1])
+    
+    
+    def reserve_seats_in_show(self, show_info: dict):
+        print("Kuinka monta paikkaa haluat varata näytökseen?")
+        while True:
+            number_to_reserve = input_validation.ask_user_to_input_number_zero_or_over()
+            if number_to_reserve == 0:
+                return
+            else:
+                hall_seats = show_info["Hall"].get_number_of_seats()
+                reservations = show_info["Show"]["Varauksia"]
+                show_id = show_info["Show"]["ID"]
+                available_seats = hall_seats - reservations
+
+                if number_to_reserve <= available_seats:
+                    print("Varaus tehty!")
+                    show_info["Hall"].reserve_seats_in_show(number_to_reserve, show_id)
+                    
+                    break
+                else:
+                    print(f"Esityksessä ei ole {number_to_reserve} vapaata paikkaa!")
+
+
+    
+    def get_and_print_indexed_list_and_chosen_index(self, show_list: list) -> list:
+        indexed_list = self.add_indices_to_a_list_of_shows(show_list)
+        self.print_halls_and_shows_in_readable_format(indexed_list)
+        index = self.get_user_show_choice(indexed_list[-1]["Index"])
+
+        return indexed_list, index
+
                 
     def choose_show_by_date(self):
         chosen_date = input_validation.get_manual_date_input()
         show_list = self.get_list_of_shows_for_given_date(chosen_date)
-        indexed_list = self.add_indices_to_a_list_of_shows(show_list)
-        self.print_halls_and_shows_in_readable_format(indexed_list)
 
-    
+        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+        self.seat_reservation(indexed_list, index)
+
+
     def choose_from_todays_shows(self):
         show_list = self.get_sorted_list_limited_by_days(0)
         indexed_list = self.add_indices_to_a_list_of_shows(show_list)
-        self.print_halls_and_shows_in_readable_format(indexed_list)
-            
+
+        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+        self.seat_reservation(indexed_list, index)
+
     
     def choose_from_next_7_days_shows(self):
         show_list = self.get_sorted_list_limited_by_days(7)
         indexed_list = self.add_indices_to_a_list_of_shows(show_list)
-        self.print_halls_and_shows_in_readable_format(indexed_list)
+
+        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+        self.seat_reservation(indexed_list, index)
+
+
+    def get_user_show_choice(self, largest_index: int) -> int:
+        print("Aseta haluamasi esityksen järjestysluku")
+        while True:
+            choice = input_validation.ask_user_to_input_number_zero_or_over()
+
+            if choice == 0:
+                return 0
+            
+            if choice <= largest_index:
+                return choice
+            else:
+                print(f"Esitystä numerolla {choice} ei löytynyt.")
 
     def sort_shows_by_date(self, date_to_search: datetime.date) -> list:
         show_list = self.get_list_of_shows_for_given_date(date_to_search)

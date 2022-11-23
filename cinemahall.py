@@ -75,9 +75,33 @@ class CinemaHall():
 
         film = Films.select_film_for_show(Films())
 
-        show = {"Aloitusaika": start_time_string, "Elokuvan ID": film.get_id(), "Varauksia": 0}
+        show_id = self.generate_unique_show_id()
+
+        show = {"ID": show_id, "Aloitusaika": start_time_string, "Elokuvan ID": film.get_id(), "Varauksia": 0}
 
         self.__shows.append(show)
+
+
+    def generate_unique_show_id(self):
+        ids = []
+
+        for show in self.__shows:
+            ids.append(show["ID"])
+        
+        if len(ids) < 1:
+            return 1
+        
+        show_id = ids[-1] + 1
+
+        while True:
+            if not show_id in ids:
+                return show_id
+            show_id += 1
+        
+    def reserve_seats_in_show(self, number_of_seats: int, show_id: int):
+        for show in self.__shows:
+            if show["ID"] == show_id:
+                show["Varauksia"] += number_of_seats
 
         
     def edit_shows(self):
@@ -122,7 +146,11 @@ class CinemaHall():
             
         print("-" * 20)
 
-
+    
+    def get_number_of_available_seats(self, show_reservations: int):
+        return self.get_number_of_seats - show_reservations
+        
+    
     #################################################################
     # Miscellaneous
     #################################################################
@@ -130,8 +158,9 @@ class CinemaHall():
     def get_name(self):
         return self.__name
     
-    def get_amount_of_seats(self):
+    def get_number_of_seats(self):
         return self.__seats
+
 
 
 

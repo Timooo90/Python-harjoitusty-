@@ -24,6 +24,7 @@
   "Paikkoja": 54,
   "N\u00e4yt\u00f6kset": [
    {
+    "ID": 1,
     "Aloitusaika": "2022-11-24, 17:50",
     "Elokuvan ID": 3,
     "Varauksia": 0
@@ -35,16 +36,19 @@
   "Paikkoja": 23,
   "N\u00e4yt\u00f6kset": [
    {
+    "ID": 1,
     "Aloitusaika": "2022-11-24, 19:20",
     "Elokuvan ID": 5,
     "Varauksia": 0
    },
    {
+    "ID": 2,
     "Aloitusaika": "2022-11-24, 12:10",
     "Elokuvan ID": 1,
     "Varauksia": 0
    },
    {
+    "ID": 3,
     "Aloitusaika": "2023-02-04, 01:30",
     "Elokuvan ID": 4,
     "Varauksia": 0
@@ -54,7 +58,26 @@
  {
   "Nimi": "Sali2",
   "Paikkoja": 43,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "ID": 1,
+    "Aloitusaika": "2022-12-05, 15:35",
+    "Elokuvan ID": 2,
+    "Varauksia": 0
+   },
+   {
+    "ID": 2,
+    "Aloitusaika": "2022-11-24, 23:50",
+    "Elokuvan ID": 5,
+    "Varauksia": 23
+   },
+   {
+    "ID": 3,
+    "Aloitusaika": "2023-01-12, 12:00",
+    "Elokuvan ID": 6,
+    "Varauksia": 0
+   }
+  ]
  },
  {
   "Nimi": "Saliiiiasdasdsad35215",
@@ -66,6 +89,7 @@
   "Paikkoja": 5,
   "N\u00e4yt\u00f6kset": [
    {
+    "ID": 1,
     "Aloitusaika": "2022-11-23, 17:20",
     "Elokuvan ID": 7,
     "Varauksia": 0
