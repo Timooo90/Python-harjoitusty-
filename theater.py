@@ -66,19 +66,20 @@ class Theater():
 
 
     def edit_cinema_hall(self):
-        self.print_cinema_halls()
-        hall_index = self.__choose_cinema_hall_number()
-        Settings.print_edit_single_hall_commands(Settings())
+        while True:
+            self.print_cinema_halls()
+            hall_index = self.__choose_cinema_hall_number()
+            Settings.print_edit_single_hall_commands(Settings())
 
-        command = input_validation.ask_command_from_user()
+            command = input_validation.ask_command_from_user()
 
-        if command == "0":
-            return
-        elif command == "1":
-            self.__cinema_halls[hall_index].change_cinema_hall_name()
-        elif command == "2":
-            self.__cinema_halls[hall_index].change_cinema_hall_seats()
-    
+            if command == "0":
+                return
+            elif command == "1":
+                self.__cinema_halls[hall_index].change_cinema_hall_name()
+            elif command == "2":
+                self.__cinema_halls[hall_index].change_cinema_hall_seats()
+        
 
     def remove_cinema_hall(self):
         self.print_cinema_halls()

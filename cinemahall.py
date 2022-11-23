@@ -25,19 +25,6 @@ class CinemaHall():
     # Adding, editing and removing related functions for cinema halls
     #################################################################
 
-    def edit_shows(self):
-        while True:
-            Settings.print_edit_shows_of_selected_hall_commands(Settings)
-            command = input_validation.ask_command_from_user()
-
-            if command == "0":
-                return
-
-            if command in settings.get_edit_shows_of_selected_hall_commands():
-                func = settings.get_edit_shows_of_selected_hall_commands()[command] + "()"
-                eval(func)
-
-
     def create_new_hall_from_input(self):
         print("Luodaan uusi sali.")
         print("Salin nimi: ", end="")
@@ -72,7 +59,12 @@ class CinemaHall():
 
         self.__seats = new_number
 
-    
+
+            
+    #################################################################
+    # Show related functions
+    #################################################################
+
     def add_show(self):
         start_date = input_validation.ask_date_from_user()
         start_HH_MM = input_validation.ask_time_HH_MM_from_user()
@@ -84,6 +76,19 @@ class CinemaHall():
         film = Films.select_film_for_show(Films())
 
         self.__shows.append((start_time_string, film.get_id()))
+
+        
+    def edit_shows(self):
+        while True:
+            Settings.print_edit_shows_of_selected_hall_commands(Settings)
+            command = input_validation.ask_command_from_user()
+
+            if command == "0":
+                return
+
+            if command in settings.get_edit_shows_of_selected_hall_commands():
+                func = settings.get_edit_shows_of_selected_hall_commands()[command] + "()"
+                eval(func)
 
 
     def remove_show(self):
@@ -97,15 +102,7 @@ class CinemaHall():
                 self.__shows.pop(index)
                 break
 
-
-
-    #################################################################
-    # Miscellaneous
-    #################################################################
-
-    def get_name(self):
-        return self.__name
-
+            
     def get_shows(self):
         return self.__shows
     
@@ -124,7 +121,20 @@ class CinemaHall():
         print("-" * 20)
 
 
+    #################################################################
+    # Miscellaneous
+    #################################################################
 
+    def get_name(self):
+        return self.__name
+
+
+    
+
+
+    #################################################################
+    # For testing purposes
+    #################################################################
 
 if __name__ == "__main__":
     hall = CinemaHall()

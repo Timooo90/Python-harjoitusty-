@@ -1,7 +1,7 @@
 [
  {
   "ID": 1,
-  "Nimi": "Skyrminator 2: Rahkap\u00c3\u00a4iv\u00c3\u00a4",
+  "Nimi": "Skyrminator 2: Rahkap\u00e4iv\u00e4",
   "Ohjaaja": "P. Untti",
   "Kesto": 120,
   "Ik\u00e4raja": 18
@@ -9,13 +9,13 @@
  {
   "ID": 2,
   "Nimi": "Joonas Indianasta ja Viimeinen Nistiretki",
-  "Ohjaaja": "A. Naurism\u00c3\u00a4ki",
+  "Ohjaaja": "A. Naurism\u00e4ki",
   "Kesto": 420,
   "Ik\u00e4raja": 0
  },
  {
   "ID": 3,
-  "Nimi": "T\u00c3\u00a4tien Sota Episodi V: Irmelin Pastaisku",
+  "Nimi": "T\u00e4tien Sota Episodi V: Irmelin Pastaisku",
   "Ohjaaja": "S. Spielbergule",
   "Kesto": 142,
   "Ik\u00e4raja": 12
@@ -23,13 +23,13 @@
  {
   "ID": 4,
   "Nimi": "Fifty Shades of EI!",
-  "Ohjaaja": "P. R\u00c3\u00a4s\u00c3\u00a4nen",
+  "Ohjaaja": "P. R\u00e4s\u00e4nen",
   "Kesto": 15,
   "Ik\u00e4raja": 99
  },
  {
   "ID": 5,
-  "Nimi": "Spider-Manse: H\u00c3\u00a4myri Tampereella",
+  "Nimi": "Spider-Manse: H\u00e4myri Tampereella",
   "Ohjaaja": "D. Orka",
   "Kesto": 78,
   "Ik\u00e4raja": 12
@@ -37,7 +37,7 @@
  {
   "ID": 6,
   "Nimi": "Kuudes Maisti",
-  "Ohjaaja": "E. N. Keksien\u00c3\u00a4\u00c3\u00a4",
+  "Ohjaaja": "E. N. Keksien\u00e4\u00e4",
   "Kesto": 111,
   "Ik\u00e4raja": 15
  },
@@ -50,9 +50,30 @@
  },
  {
   "ID": 8,
-  "Nimi": "asd",
+  "Nimi": "asdasdas",
   "Ohjaaja": "dfdfd",
   "Kesto": 4,
+  "Ik\u00e4raja": 0
+ },
+ {
+  "ID": 9,
+  "Nimi": "Surkee Leffa",
+  "Ohjaaja": "Toivoton Ohjaaja",
+  "Kesto": 12,
+  "Ik\u00e4raja": 0
+ },
+ {
+  "ID": 10,
+  "Nimi": "sakfas",
+  "Ohjaaja": "adfads",
+  "Kesto": 2,
+  "Ik\u00e4raja": 0
+ },
+ {
+  "ID": 11,
+  "Nimi": "asd",
+  "Ohjaaja": "gdgd",
+  "Kesto": 68,
   "Ik\u00e4raja": 0
  }
 ]

@@ -175,18 +175,22 @@ class Films():
 
 
         def change_name(self):
+            print("Anna uusi nimi: ")
             name = input_validation.ask_user_to_input_a_name()
             self.__name = name
         
         def change_director(self):
+            print("Anna uusi ohjaaja: ")
             director = input_validation.ask_user_to_input_a_name()
             self.__director = director
 
         def change_runtime(self):
+            print("Anna uusi kesto: ")
             runtime = input_validation.ask_user_to_input_number_zero_or_over()
             self.__runtime = runtime
         
         def change_required_age(self):
+            print("Anna uusi ikäraja: ")
             required_age = input_validation.ask_user_to_input_number_zero_or_over()
             self.__required_age = required_age
 
@@ -205,7 +209,7 @@ class Films():
                 if command in settings.get_edit_single_film_commands():
                     func = settings.get_edit_single_film_commands()[command] + "()"
                     eval(func)
-                    break
+
         
         def form_dictionary_from_self(self): # For JSON
             return {"ID": self.__id, "Nimi": self.__name, "Ohjaaja": self.__director, "Kesto": self.__runtime, "Ikäraja": self.__required_age}

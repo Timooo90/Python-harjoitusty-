@@ -64,6 +64,7 @@ class Settings:
 
     def print_customer_commands(self):
         print("")
+        print("Komennot: ")
         print("0 - Sulje ohjelma")
         print("1 - Tulosta salit")
         print("9 - Vaihda käyttäjää")
@@ -71,6 +72,7 @@ class Settings:
 
     def print_admin_commands(self):
         print("")
+        print("Ylläpitäjän komennot: ")
         print("0 - Poistu")
         print("1 - Hallinnoi saleja")
         print("2 - Hallinnoi elokuvia")
@@ -78,6 +80,7 @@ class Settings:
 
     def print_edit_cinema_halls_commands(self):
         print("")
+        print("Elokuvasalien komennot: ")
         print("0 - Takaisin")
         print("1 - Tulosta salit")
         print("2 - Luo uusi")
@@ -86,12 +89,14 @@ class Settings:
 
     def print_edit_single_hall_commands(self):
         print("")
-        print("0 - Peruuta")
+        print("Salin komennot: ")
+        print("0 - Takaisin")
         print("1 - Muuta nimeä")
         print("2 - Muuta istuinpaikkojen määrää")
 
     def print_edit_films_commands(self):
         print("")
+        print("Elokuvien komennot: ")
         print("0 - Takaisin")
         print("1 - Tulosta elokuvavalikoima")
         print("2 - Lisää uusi elokuva")
@@ -100,6 +105,7 @@ class Settings:
     
     def print_edit_single_film_commands(self):
         print("")
+        print("Elokuvan komennot: ")
         print("0 - Takaisin")
         print("1 - Vaihda elokuvan nimi")
         print("2 - Vaihda ohjaajan nimi")
@@ -108,12 +114,14 @@ class Settings:
 
     def print_edit_shows_commands(self):
         print("")
+        print("Näytösten komennot: ")
         print("0 - Takaisin")
         print("1 - Tulosta kaikki näytökset")
         print("2 - Hallitse näytöksiä")
 
     def print_edit_shows_of_selected_hall_commands(self):
         print("")
+        print("Salin näytösten hallintakomennot: ")
         print("0 - Takaisin")
         print("1 - Tulosta salin näytökset")
         print("2 - Lisää näytös")
