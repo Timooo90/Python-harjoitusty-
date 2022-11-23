@@ -54,9 +54,9 @@ class Settings:
         }
 
         self.__browse_shows_commands = {
-                                "1": "self.choose_show_by_date",
-                                "2": "self.choose_from_todays_shows",
-                                "3": "self.choose_from_next_7_days_shows"
+                                "1": "self.choose_from_todays_shows",
+                                "2": "self.choose_from_next_7_days_shows",
+                                "3": "self.choose_show_by_date"
         }
 
 
@@ -145,9 +145,9 @@ class Settings:
     def print_browse_shows_commands(self):
         print("")
         print("0 - Takaisin")
-        print("1 - Hae näytöksiä päivämäärän mukaan")
-        print("2 - Hae tämän päivän näytökset")
+        print("1 - Hae tämän päivän näytökset")
         print("2 - Hae seuraavan 7 päivän näytökset")
+        print("3 - Hae näytöksiä päivämäärän mukaan")
 
     def get_admin_password(self):
         return self.__admin_password

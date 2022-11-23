@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from datetime import date
 from datetime import timedelta
 
 import input_validation as input_validation
@@ -178,6 +179,19 @@ class Theater():
             print("Näytökset: ")
             
             hall.print_shows()
+
+            
+    def print_halls_and_shows_in_readable_format(self, indexed_list: list):
+        for show_and_hall in indexed_list:
+            show = show_and_hall["Show"]
+            hall = show_and_hall["Hall"]
+            index = show_and_hall["Index"]
+
+            date_and_time = show["Aloitusaika"]
+            film_name = self.__films.get_film_name_from_id(show["Elokuvan ID"])
+            available_seats = hall.get_amount_of_seats() - show["Varauksia"]
+            
+            print(f"#{index} | Näytösaika: {date_and_time} | Sali: {hall.get_name()} | Elokuva: {film_name} | Vapaita paikkoja: {available_seats}")
     
 
     def edit_shows_in_a_hall(self):
@@ -204,18 +218,38 @@ class Theater():
 
                 
     def choose_show_by_date(self):
-        pass
+        chosen_date = input_validation.get_manual_date_input()
+        show_list = self.get_list_of_shows_for_given_date(chosen_date)
+        indexed_list = self.add_indices_to_a_list_of_shows(show_list)
+        self.print_halls_and_shows_in_readable_format(indexed_list)
 
     
     def choose_from_todays_shows(self):
-        pass
-
+        show_list = self.get_sorted_list_limited_by_days(0)
+        indexed_list = self.add_indices_to_a_list_of_shows(show_list)
+        self.print_halls_and_shows_in_readable_format(indexed_list)
+            
     
     def choose_from_next_7_days_shows(self):
-        pass
+        show_list = self.get_sorted_list_limited_by_days(7)
+        indexed_list = self.add_indices_to_a_list_of_shows(show_list)
+        self.print_halls_and_shows_in_readable_format(indexed_list)
 
-    def sort_shows_by_date(self):
-        pass
+    def sort_shows_by_date(self, date_to_search: datetime.date) -> list:
+        show_list = self.get_list_of_shows_for_given_date(date_to_search)
+
+        return show_list
+
+    def add_indices_to_a_list_of_shows(self, list: list) -> list:
+        indexed_list = list[:]
+        index = 1
+
+        for show in indexed_list:
+            show["Index"] = index
+            index += 1
+
+        return indexed_list
+
 
     def get_shows_from_all_halls(self):
         show_list = []
@@ -231,7 +265,30 @@ class Theater():
 
     def sort_list_of_shows(self, show_list):
         return sorted(show_list, key=lambda d: d["Show"]["Aloitusaika"])
+    
+    def get_sorted_list_limited_by_days(self, days: int) -> list:
+        show_list = self.sort_list_of_shows(self.get_shows_from_all_halls())
+        limited_list = self.limit_list_of_shows_to_number_of_days_from_today(show_list, days)
 
+        return limited_list
+
+    def get_list_of_shows_for_given_date(self, date: datetime.date):
+        show_list = self.get_shows_from_all_halls()
+        sorted_list = self.sort_list_of_shows(show_list)
+
+        return self.limit_list_of_shows_to_chosen_date(sorted_list, date)
+    
+    def limit_list_of_shows_to_chosen_date(self, shows: list, chosen_date: datetime.date):
+        match_list = []
+
+        for show in shows:
+            show_datetime = input_validation.string_to_date(show["Show"]["Aloitusaika"])
+            show_date = show_datetime.date()
+
+            if show_date == chosen_date:
+                match_list.append(show)
+        
+        return match_list
 
     def limit_list_of_shows_to_number_of_days_from_today(self, shows: list, max_days: int):
         date_now = datetime.today().date()
@@ -258,10 +315,17 @@ if __name__ == "__main__":
 
     shows_sorted = theater.sort_list_of_shows(shows)
 
+    chosen_date = date(2022, 11, 24)
+
+    limited_list = theater.limit_list_of_shows_to_chosen_date(shows_sorted, chosen_date)
+
+    for show in limited_list:
+        print(show)
+
     #for show in shows_sorted:
         #print(show)
     
-    test_list = theater.limit_list_of_shows_to_number_of_days_from_today(shows_sorted, 7)
+    #test_list = theater.limit_list_of_shows_to_number_of_days_from_today(shows_sorted, 7)
 
-    for show in test_list:
-        print(show)
+    #for show in test_list:
+        #print(show)

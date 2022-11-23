@@ -129,9 +129,10 @@ class CinemaHall():
 
     def get_name(self):
         return self.__name
-
-
     
+    def get_amount_of_seats(self):
+        return self.__seats
+
 
 
     #################################################################
