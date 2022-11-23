@@ -43,6 +43,11 @@
     "Aloitusaika": "2022-11-24, 12:10",
     "Elokuvan ID": 1,
     "Varauksia": 0
+   },
+   {
+    "Aloitusaika": "2023-02-04, 01:30",
+    "Elokuvan ID": 4,
+    "Varauksia": 0
    }
   ]
  },
@@ -59,6 +64,12 @@
  {
   "Nimi": "asdsad",
   "Paikkoja": 5,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "Aloitusaika": "2022-11-23, 17:20",
+    "Elokuvan ID": 7,
+    "Varauksia": 0
+   }
+  ]
  }
 ]

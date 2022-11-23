@@ -1,9 +1,12 @@
 import json
+from datetime import datetime
+from datetime import timedelta
 
 import input_validation as input_validation
 from films import Films
 from cinemahall import CinemaHall
 from settings import Settings
+
 
 class Theater():
     def __init__(self):
@@ -199,6 +202,7 @@ class Theater():
                 func = Settings.get_browse_shows_commands(Settings())[command] + "()"
                 eval(func)
 
+                
     def choose_show_by_date(self):
         pass
 
@@ -209,3 +213,55 @@ class Theater():
     
     def choose_from_next_7_days_shows(self):
         pass
+
+    def sort_shows_by_date(self):
+        pass
+
+    def get_shows_from_all_halls(self):
+        show_list = []
+
+        for hall in self.__cinema_halls:
+            hall_shows = hall.get_shows()
+            
+            for show in hall_shows:             
+                show_list.append({"Hall": hall, "Show": show})
+
+        return show_list
+
+
+    def sort_list_of_shows(self, show_list):
+        return sorted(show_list, key=lambda d: d["Show"]["Aloitusaika"])
+
+
+    def limit_list_of_shows_to_number_of_days_from_today(self, shows: list, max_days: int):
+        date_now = datetime.today().date()
+        match_list = []
+
+        for show in shows:
+            show_datetime = input_validation.string_to_date(show["Show"]["Aloitusaika"])
+            show_date = show_datetime.date()
+
+            if show_date >= date_now and show_date <= date_now + timedelta(days=max_days):
+                match_list.append(show)
+        
+        return match_list
+
+
+
+    #################################################################
+    # For testing purposes
+    #################################################################
+
+if __name__ == "__main__":
+    theater = Theater()
+    shows = theater.get_shows_from_all_halls()
+
+    shows_sorted = theater.sort_list_of_shows(shows)
+
+    #for show in shows_sorted:
+        #print(show)
+    
+    test_list = theater.limit_list_of_shows_to_number_of_days_from_today(shows_sorted, 7)
+
+    for show in test_list:
+        print(show)
