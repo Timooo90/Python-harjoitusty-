@@ -185,3 +185,27 @@ class Theater():
             return
 
         self.__cinema_halls[hall_index].edit_shows()
+
+    
+    def browse_shows(self):
+        while True:
+            Settings.print_browse_shows_commands(Settings())
+            command = input_validation.ask_command_from_user()
+
+            if command == "0":
+                return
+
+            if command in Settings.get_browse_shows_commands(Settings()):
+                func = Settings.get_browse_shows_commands(Settings())[command] + "()"
+                eval(func)
+
+    def choose_show_by_date(self):
+        pass
+
+    
+    def choose_from_todays_shows(self):
+        pass
+
+    
+    def choose_from_next_7_days_shows(self):
+        pass

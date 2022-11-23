@@ -162,10 +162,11 @@ def ask_time_HH_MM_from_user() -> time:
 
 
 def date_to_string(date: datetime) -> str:
-    return date.strftime("%Y%m%d, %H%M%S")
+    return date.strftime("%Y-%m-%d, %H:%M")
 
 def string_to_date(date_string: str) -> datetime:
-    return datetime.strptime(date_string, "%Y%m%d, %H%M%S")
+    return datetime.strptime(date_string, "%Y-%m-%d, %H:%M")
+
 
 
 

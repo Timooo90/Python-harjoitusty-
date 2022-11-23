@@ -2,12 +2,7 @@
  {
   "Nimi": "Sali1",
   "Paikkoja": 30,
-  "N\u00e4yt\u00f6kset": [
-   [
-    "20221122, 013000",
-    1
-   ]
-  ]
+  "N\u00e4yt\u00f6kset": []
  },
  {
   "Nimi": "Sali5423",
@@ -22,50 +17,44 @@
  {
   "Nimi": "Sali5425",
   "Paikkoja": 345,
-  "N\u00e4yt\u00f6kset": [
-   [
-    "20221122, 101500",
-    7
-   ]
-  ]
+  "N\u00e4yt\u00f6kset": []
  },
  {
   "Nimi": "Saliii3",
   "Paikkoja": 54,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "Aloitusaika": "2022-11-24, 17:50",
+    "Elokuvan ID": 3,
+    "Varauksia": 0
+   }
+  ]
  },
  {
   "Nimi": "Saliiii35",
   "Paikkoja": 23,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "Aloitusaika": "2022-11-24, 19:20",
+    "Elokuvan ID": 5,
+    "Varauksia": 0
+   },
+   {
+    "Aloitusaika": "2022-11-24, 12:10",
+    "Elokuvan ID": 1,
+    "Varauksia": 0
+   }
+  ]
  },
  {
   "Nimi": "Sali2",
   "Paikkoja": 43,
-  "N\u00e4yt\u00f6kset": [
-   [
-    "20221123, 123000",
-    6
-   ],
-   [
-    "20221123, 111500",
-    2
-   ],
-   [
-    "20221123, 054000",
-    4
-   ]
-  ]
+  "N\u00e4yt\u00f6kset": []
  },
  {
   "Nimi": "Saliiiiasdasdsad35215",
   "Paikkoja": 24324,
-  "N\u00e4yt\u00f6kset": [
-   [
-    "20230115, 154000",
-    4
-   ]
-  ]
+  "N\u00e4yt\u00f6kset": []
  },
  {
   "Nimi": "asdsad",

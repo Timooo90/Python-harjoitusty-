@@ -75,7 +75,9 @@ class CinemaHall():
 
         film = Films.select_film_for_show(Films())
 
-        self.__shows.append((start_time_string, film.get_id()))
+        show = {"Aloitusaika": start_time_string, "Elokuvan ID": film.get_id(), "Varauksia": 0}
+
+        self.__shows.append(show)
 
         
     def edit_shows(self):
@@ -112,8 +114,8 @@ class CinemaHall():
                 print("Ei näytöksiä")
         else: 
             for show in self.__shows:
-                show_date = input_validation.string_to_date(show[0])
-                show_film = Films.get_film_name_from_id(Films(), show[1])
+                show_date = show["Aloitusaika"]
+                show_film = Films.get_film_name_from_id(Films(), show["Elokuvan ID"])
 
                 print(f"#{index}: Esitysaika: {show_date}, Elokuva: {show_film}")
                 index += 1

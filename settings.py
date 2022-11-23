@@ -11,6 +11,7 @@ class Settings:
         self.__customer_commands = {
                                 "0": "self.stop_execution",
                                 "1": "self.theater.print_cinema_halls",
+                                "2": "self.theater.browse_shows",
                                 "9": "self.select_user"
         }
 
@@ -52,6 +53,13 @@ class Settings:
                                 "3": "self.remove_show"
         }
 
+        self.__browse_shows_commands = {
+                                "1": "self.choose_show_by_date",
+                                "2": "self.choose_from_todays_shows",
+                                "3": "self.choose_from_next_7_days_shows"
+        }
+
+
 
     def print_intro(self):
         print("Tervetuloa Leffanaattoriin!")
@@ -67,6 +75,7 @@ class Settings:
         print("Komennot: ")
         print("0 - Sulje ohjelma")
         print("1 - Tulosta salit")
+        print("2 - Selaa näytöksiä")
         print("9 - Vaihda käyttäjää")
         print("")
 
@@ -132,6 +141,13 @@ class Settings:
         print("0 - Tänään")
         print("1 - Huomenna")
         print("2 - Aseta päivämäärä")
+    
+    def print_browse_shows_commands(self):
+        print("")
+        print("0 - Takaisin")
+        print("1 - Hae näytöksiä päivämäärän mukaan")
+        print("2 - Hae tämän päivän näytökset")
+        print("2 - Hae seuraavan 7 päivän näytökset")
 
     def get_admin_password(self):
         return self.__admin_password
@@ -156,6 +172,9 @@ class Settings:
 
     def get_edit_shows_of_selected_hall_commands(self):
         return self.__edit_shows_of_selected_hall
+
+    def get_browse_shows_commands(self):
+        return self.__browse_shows_commands
 
     def get_cinema_halls_filepath(self):
         return self.__cinema_halls_filepath
