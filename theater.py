@@ -249,6 +249,8 @@ class Theater():
     def get_and_print_indexed_list_and_chosen_index(self, show_list: list) -> list:
         indexed_list = self.add_indices_to_a_list_of_shows(show_list)
         self.print_halls_and_shows_in_readable_format(indexed_list)
+        if len(indexed_list) < 1:
+            return []
         index = self.get_user_show_choice(indexed_list[-1]["Index"])
 
         return indexed_list, index
@@ -258,24 +260,33 @@ class Theater():
         chosen_date = input_validation.get_manual_date_input()
         show_list = self.get_list_of_shows_for_given_date(chosen_date)
 
-        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
-        self.seat_reservation(indexed_list, index)
+        if len(show_list) < 1:
+            print("Ei näytöksiä valitulla aikavälillä.")
+        else:
+            indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+            self.seat_reservation(indexed_list, index)
 
 
     def choose_from_todays_shows(self):
         show_list = self.get_sorted_list_limited_by_days(0)
         indexed_list = self.add_indices_to_a_list_of_shows(show_list)
 
-        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
-        self.seat_reservation(indexed_list, index)
+        if len(indexed_list) < 1:
+            print("Ei näytöksiä valitulla aikavälillä.")
+        else:
+            indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+            self.seat_reservation(indexed_list, index)
 
     
     def choose_from_next_7_days_shows(self):
         show_list = self.get_sorted_list_limited_by_days(7)
         indexed_list = self.add_indices_to_a_list_of_shows(show_list)
 
-        indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
-        self.seat_reservation(indexed_list, index)
+        if len(indexed_list) < 1:
+            print("Ei näytöksiä valitulla aikavälillä.")
+        else:
+            indexed_list, index = self.get_and_print_indexed_list_and_chosen_index(show_list)
+            self.seat_reservation(indexed_list, index)
 
 
     def get_user_show_choice(self, largest_index: int) -> int:
