@@ -91,7 +91,7 @@ class Films():
                 self.__films.pop(film_index)
                 break
 
-    def get_all_film_ids(self):
+    def get_all_film_ids(self) -> list:
         ids = []
         for film in self.__films:
             ids.append(film.get_id())

@@ -12,7 +12,26 @@
  {
   "Nimi": "Kunto-sali",
   "Paikkoja": 999,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "ID": 1,
+    "Aloitusaika": "2022-11-26, 15:40",
+    "Elokuvan ID": 7,
+    "Varauksia": 0
+   },
+   {
+    "ID": 2,
+    "Aloitusaika": "2022-11-26, 10:30",
+    "Elokuvan ID": 6,
+    "Varauksia": 0
+   },
+   {
+    "ID": 3,
+    "Aloitusaika": "2022-11-26, 11:50",
+    "Elokuvan ID": 5,
+    "Varauksia": 100
+   }
+  ]
  },
  {
   "Nimi": "Sali5425",
@@ -27,6 +46,12 @@
     "ID": 1,
     "Aloitusaika": "2022-11-24, 17:50",
     "Elokuvan ID": 3,
+    "Varauksia": 0
+   },
+   {
+    "ID": 2,
+    "Aloitusaika": "2022-11-27, 19:30",
+    "Elokuvan ID": 2,
     "Varauksia": 0
    }
   ]

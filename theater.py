@@ -302,10 +302,6 @@ class Theater():
             else:
                 print(f"Esitystä numerolla {choice} ei löytynyt.")
 
-    def sort_shows_by_date(self, date_to_search: datetime.date) -> list:
-        show_list = self.get_list_of_shows_for_given_date(date_to_search)
-
-        return show_list
 
     def add_indices_to_a_list_of_shows(self, list: list) -> list:
         indexed_list = list[:]
@@ -339,13 +335,13 @@ class Theater():
 
         return limited_list
 
-    def get_list_of_shows_for_given_date(self, date: datetime.date):
+    def get_list_of_shows_for_given_date(self, date: datetime.date) -> list:
         show_list = self.get_shows_from_all_halls()
         sorted_list = self.sort_list_of_shows(show_list)
 
         return self.limit_list_of_shows_to_chosen_date(sorted_list, date)
     
-    def limit_list_of_shows_to_chosen_date(self, shows: list, chosen_date: datetime.date):
+    def limit_list_of_shows_to_chosen_date(self, shows: list, chosen_date: datetime.date) -> list:
         match_list = []
 
         for show in shows:
