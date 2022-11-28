@@ -66,8 +66,10 @@ class Settings:
 
     def print_user_types(self):
         print("Käyttäjäluokat: ")
+        print("0 - Sulje ohjelma")
         print("1 - Asiakas")
         print("2 - Omistaja")
+        print("9 - Avaa graafinen käyttöliittymä")
         print("")
 
     def print_customer_commands(self):

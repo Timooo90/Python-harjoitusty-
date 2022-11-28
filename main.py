@@ -1,6 +1,7 @@
 import input_validation as input_validation
 from settings import Settings
 from theater import Theater
+from GUI import GUI
 
 
 class Application():
@@ -26,12 +27,20 @@ class Application():
 
         while not self.__login_success:
             choice = input("Valitse käyttäjä: ")
-            if choice in ["1", "2"]:
+            if choice in ["0", "1", "2", "9"]:
                 if choice == "1":
                     self.exit_admin_mode()
                     self.__login_success = True
                 elif choice == "2":
                     self.__admin_login_passcheck()
+                elif choice == "9":
+                    self.stop_execution()
+                    self.__GUI = GUI()
+                    break
+                elif choice == "0":
+                    self.stop_execution()
+                    break
+
     
 
     def __admin_login_passcheck(self):

@@ -46,7 +46,10 @@ class Theater():
     #################################################################
     # Cinema hall related functions
     #################################################################
-    
+
+    def get_cinema_halls(self):
+        return self.__cinema_halls            
+
     def cinema_halls_editing_menu(self):
         while True:
             Settings.print_edit_cinema_halls_commands(Settings())
