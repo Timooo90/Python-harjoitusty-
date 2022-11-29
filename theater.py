@@ -76,6 +76,9 @@ class Theater():
         while True:
             self.print_cinema_halls()
             hall_index = self.__choose_cinema_hall_number()
+            if hall_index < 0:
+                break
+            
             Settings.print_edit_single_hall_commands(Settings())
 
             command = input_validation.ask_command_from_user()

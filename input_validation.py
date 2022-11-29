@@ -46,6 +46,18 @@ def ask_user_to_input_a_name() -> str:
     
     return name
 
+def ask_user_to_input_integer() -> int:
+    while True:
+        number = input()
+
+        number = string_to_int(number)
+
+        if not isinstance(number, int):
+            continue
+        
+        return number
+
+
 def ask_user_to_input_number_zero_or_over() -> int:
     while True:
         number = input()

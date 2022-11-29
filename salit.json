@@ -88,7 +88,7 @@
     "ID": 1,
     "Aloitusaika": "2022-12-05, 15:35",
     "Elokuvan ID": 2,
-    "Varauksia": 4
+    "Varauksia": 9
    },
    {
     "ID": 2,
@@ -107,7 +107,14 @@
  {
   "Nimi": "Saliiiiasdasdsad35215",
   "Paikkoja": 24324,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "ID": 1,
+    "Aloitusaika": "2022-11-30, 13:40",
+    "Elokuvan ID": 12,
+    "Varauksia": 0
+   }
+  ]
  },
  {
   "Nimi": "asdsad",
@@ -120,5 +127,10 @@
     "Varauksia": 0
    }
   ]
+ },
+ {
+  "Nimi": "sdafdsf3523",
+  "Paikkoja": 34,
+  "N\u00e4yt\u00f6kset": []
  }
 ]

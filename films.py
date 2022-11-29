@@ -68,7 +68,7 @@ class Films():
         while True:
             self.print_films()
             print("Anna muokattavan elokuvan järjestysnumero. Negatiivinen luku peruuttaa.")
-            film_index = input_validation.ask_user_to_input_number_zero_or_over()
+            film_index = input_validation.ask_user_to_input_integer()
             
             if film_index < 0:
                 break
@@ -82,7 +82,7 @@ class Films():
         while True:
             self.print_films()
             print("Anna poistettavan elokuvan järjestysnumero. Negatiivinen luku peruuttaa.")
-            film_index = input_validation.ask_user_to_input_number_zero_or_over()
+            film_index = input_validation.ask_user_to_input_integer()
 
             if film_index < 0:
                 break
