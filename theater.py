@@ -48,7 +48,12 @@ class Theater():
     #################################################################
 
     def get_cinema_halls(self):
-        return self.__cinema_halls            
+        return self.__cinema_halls
+
+    def get_cinema_hall_by_name(self, name: str):
+        for hall in self.__cinema_halls:
+            if hall.get_name() == name:
+                return hall
 
     def cinema_halls_editing_menu(self):
         while True:
@@ -78,7 +83,7 @@ class Theater():
             hall_index = self.__choose_cinema_hall_number()
             if hall_index < 0:
                 break
-            
+
             Settings.print_edit_single_hall_commands(Settings())
 
             command = input_validation.ask_command_from_user()

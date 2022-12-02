@@ -69,7 +69,7 @@ class Settings:
         print("0 - Sulje ohjelma")
         print("1 - Asiakas")
         print("2 - Omistaja")
-        print("9 - Avaa graafinen käyttöliittymä")
+        print("9 - Avaa graafinen käyttöliittymä (erittäin vajaa [tai olematon] toiminnallisuus)")
         print("")
 
     def print_customer_commands(self):

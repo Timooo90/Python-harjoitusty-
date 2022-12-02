@@ -2,7 +2,20 @@
  {
   "Nimi": "Sali1",
   "Paikkoja": 30,
-  "N\u00e4yt\u00f6kset": []
+  "N\u00e4yt\u00f6kset": [
+   {
+    "ID": 1,
+    "Aloitusaika": "2022-12-08, 20:30",
+    "Elokuvan ID": 3,
+    "Varauksia": 10
+   },
+   {
+    "ID": 2,
+    "Aloitusaika": "2022-12-09, 05:50",
+    "Elokuvan ID": 4,
+    "Varauksia": 0
+   }
+  ]
  },
  {
   "Nimi": "Sali5423",
@@ -100,6 +113,24 @@
     "ID": 3,
     "Aloitusaika": "2023-01-12, 12:00",
     "Elokuvan ID": 6,
+    "Varauksia": 0
+   },
+   {
+    "ID": 4,
+    "Aloitusaika": "2022-12-03, 11:15",
+    "Elokuvan ID": 1,
+    "Varauksia": 0
+   },
+   {
+    "ID": 5,
+    "Aloitusaika": "2022-12-09, 16:50",
+    "Elokuvan ID": 2,
+    "Varauksia": 0
+   },
+   {
+    "ID": 6,
+    "Aloitusaika": "2022-12-09, 10:10",
+    "Elokuvan ID": 3,
     "Varauksia": 0
    }
   ]
